@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: #f7eadb;
+    color: #5a3828;
+}
+
+/* ================= FRONT PAGE ================= */
+
+#frontPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+        radial-gradient(circle at top left, #fff8ef, transparent 40%),
+        radial-gradient(circle at bottom right, #e7c7a5, transparent 40%),
+        #f7eadb;
+}
+
+.cover {
+    width: 100%;
+    max-width: 550px;
+    min-height: 700px;
+    padding: 45px 25px;
+    text-align: center;
+    background: rgba(255,255,255,.85);
+    border: 2px solid #c49a63;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(70,40,20,.18);
+    position: relative;
+}
+
+.decor {
+    font-size: 38px;
+    color: #b4824d;
+}
+
+.subtitle {
+    margin-top: 20px;
+    letter-spacing: 5px;
+    font-size: 15px;
+    color: #9a6a3c;
+}
+
+.names {
+    margin-top: 30px;
+    font-size: 43px;
+    line-height: 1.35;
+    color: #70452e;
+}
+
+.and {
+    font-size: 30px;
+    margin: 8px;
+    color: #b47d48;
+}
+
+.invite-text {
+    max-width: 420px;
+    margin: 25px auto;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.date {
+    font-size: 21px;
+    font-weight: bold;
+    color: #8b5b38;
+    margin-top: 20px;
+}
+
+.location {
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+#qrcode {
+    margin: 28px auto 12px;
+    display: flex;
+    justify-content: center;
+}
+
+#qrcode img {
+    padding: 10px;
+    background: white;
+    border: 4px solid #c49a63;
+    border-radius: 15px;
+}
+
+.scan-text {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #8b5b38;
+}
+
+
+/* ================= WEDDING CARD ================= */
+
+#weddingCard {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    background: #f7eadb;
+}
+
+.card {
+    max-width: 750px;
+    margin: auto;
+    background: white;
+    border: 2px solid #c49a63;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(70,40,20,.18);
+}
+
+.card-top {
+    padding: 60px 25px;
+    text-align: center;
+    background: #f4dfc8;
+}
+
+.card-top .small {
+    letter-spacing: 5px;
+    font-size: 14px;
+    color: #9a6a3c;
+}
+
+.card-top h1 {
+    margin-top: 25px;
+    font-size: 45px;
+    color: #70452e;
+}
+
+.heart {
+    font-size: 35px;
+    color: #b87955;
+    margin: 15px;
+}
+
+.card-section {
+    padding: 35px 25px;
+    text-align: center;
+}
+
+.card-section h2 {
+    color: #8a5a38;
+    margin-bottom: 15px;
+}
+
+.card-section p {
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+.details {
+    background: #fbf2e9;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.detail {
+    padding: 20px;
+    border-bottom: 1px solid #d9bd98;
+}
+
+.detail:last-child {
+    border-bottom: none;
+}
+
+.detail-title {
+    letter-spacing: 3px;
+    font-size: 12px;
+    color: #a16d40;
+    margin-bottom: 8px;
+}
+
+.detail-value {
+    font-size: 19px;
+    color: #57372a;
+}
+
+.family {
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.family h2 {
+    color: #8a5a38;
+    margin-bottom: 20px;
+}
+
+.footer {
+    background: #f4dfc8;
+    text-align: center;
+    padding: 40px 20px;
+    line-height: 1.8;
+}
+
+.back {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #8a5a38;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px) {
+
+    .cover {
+        min-height: 650px;
+    }
+
+    .names {
+        font-size: 34px;
+    }
+
+    .card-top h1 {
+        font-size: 36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+                    FRONT PAGE
+===================================================== -->
+
+<div id="frontPage">
+
+    <div class="cover">
+
+        <div class="decor">❀</div>
+
+        <div class="subtitle">
+            WEDDING INVITATION
+        </div>
+
+        <div class="names">
+            BRIDE NAME
+        </div>
+
+        <div class="and">
+            &
+        </div>
+
+        <div class="names">
+            GROOM NAME
+        </div>
+
+        <p class="invite-text">
+            Together with our families, we invite you
+            to celebrate the beginning of our beautiful
+            journey together.
+        </p>
+
+        <div class="date">
+            25 DECEMBER 2026
+        </div>
+
+        <div class="location">
+            Bengaluru, Karnataka
+        </div>
+
+
+        <!-- QR CODE -->
+
+        <div id="qrcode"></div>
+
+        <div class="scan-text">
+            SCAN TO OPEN WEDDING CARD
+        </div>
+
+        <div class="decor" style="margin-top:25px;">
+            ❀
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+                FULL WEDDING CARD
+===================================================== -->
+
+<div id="weddingCard">
+
+    <div class="card">
+
+        <div class="card-top">
+
+            <div class="small">
+                WITH LOVE & BLESSINGS
+            </div>
+
+            <h1>
+                DEEKSHA
+                <br>
+
+                <span class="heart">♥</span>
+
+                GROOM NAME
+            </h1>
+
+            <p>
+                Request the pleasure of your company
+                on our special day.
+            </p>
+
+        </div>
+
+
+        <div class="card-section">
+
+            <h2>
+                💍 We Are Getting Married
+            </h2>
+
+            <p>
+                Two hearts, two souls and one beautiful
+                journey are coming together.
+            </p>
+
+            <br>
+
+            <p>
+                Your presence and blessings will make
+                our special day even more memorable.
+            </p>
+
+        </div>
+
+
+        <div class="details">
+
+            <div class="detail">
+
+                <div class="detail-title">
+                    DATE
+                </div>
+
+                <div class="detail-value">
+                    25 December 2026
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-title">
+                    TIME
+                </div>
+
+                <div class="detail-value">
+                    10:30 AM
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-title">
+                    VENUE
+                </div>
+
+                <div class="detail-value">
+                    Sri Krishna Convention Hall
+                    <br>
+                    Bengaluru, Karnataka
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="family">
+
+            <h2>
+                With The Blessings Of
+            </h2>
+
+            <p>
+                Our beloved parents and family members
+            </p>
+
+            <br>
+
+            <p>
+                <b>Deeksha's Family</b>
+                <br>
+                Mr. & Mrs. __________
+            </p>
+
+            <br>
+
+            <p>
+                <b>Groom's Family</b>
+                <br>
+                Mr. & Mrs. __________
+            </p>
+
+        </div>
+
+
+        <div class="card-section">
+
+            <h2>
+                ✨ Reception
+            </h2>
+
+            <p>
+                Join us for an evening filled with
+                happiness, laughter, music and memories.
+            </p>
+
+            <br>
+
+            <b>
+                25 December 2026 | 6:30 PM
+            </b>
+
+        </div>
+
+
+        <div class="footer">
+
+            <p>
+                "Two lives become one,
+                and two hearts begin a beautiful journey."
+            </p>
+
+            <br>
+
+            <b>
+                WE CAN'T WAIT TO CELEBRATE WITH YOU ❤️
+            </b>
+
+        </div>
+
+    </div>
+
+
+    <button class="back" onclick="goBack()">
+        ← Back
+    </button>
+
+</div>
+
+
+
+<script>
+
+/*
+==========================================================
+ IMPORTANT
+==========================================================
+
+The QR code needs a URL that a phone can open.
+
+Because this is ONE HTML file, the QR stores the
+URL of THIS SAME FILE + #wedding.
+
+Example after uploading to GitHub Pages:
+
+https://yourname.github.io/wedding.html#wedding
+
+When someone scans it, the same file opens directly
+to the wedding card.
+==========================================================
+*/
+
+
+function createQR() {
+
+    /*
+    Get the current webpage URL.
+    */
+
+    let weddingCardURL =
+        window.location.href.split("#")[0] + "#wedding";
+
+
+    /*
+    Create QR code.
+    */
+
+    new QRCode(
+        document.getElementById("qrcode"),
+        {
+            text: weddingCardURL,
+            width: 170,
+            height: 170,
+            colorDark: "#70452e",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        }
+    );
+}
+
+
+
+/*
+==========================================================
+ SHOW WEDDING CARD
+==========================================================
+*/
+
+function showWeddingCard() {
+
+    document.getElementById("frontPage").style.display = "none";
+
+    document.getElementById("weddingCard").style.display = "block";
+
+    window.scrollTo(0, 0);
+}
+
+
+
+/*
+==========================================================
+ SHOW FRONT PAGE
+==========================================================
+*/
+
+function goBack() {
+
+    document.getElementById("weddingCard").style.display = "none";
+
+    document.getElementById("frontPage").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+
+
+/*
+==========================================================
+ WHEN PAGE OPENS
+==========================================================
+*/
+
+if (window.location.hash === "#wedding") {
+
+    showWeddingCard();
+
+}
+
+
+/*
+Create QR after page loads.
+*/
+
+window.onload = function() {
+
+    createQR();
+
+};
+
+</script>
+
+</body>
+</html>
